@@ -90,7 +90,7 @@ services:
   collector_app:
     build:
       context: .
-      dockerfile: collector/Dockerfile
+      dockerfile: new_collector/Dockerfile
     image: collector_image
     restart: always
     command: python collector.py

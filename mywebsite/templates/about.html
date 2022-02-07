@@ -3,24 +3,29 @@
 {%block title%} About {% endblock %}
 
 {% block content %}
+<style>
+    span {
+        background-color: rgb(242, 242, 247);
+      }
+</style>
   <center>
-    <h1>
+    <h1> 
         Weather Project
     </h1>
     <h2> Project Instructions</h2>
     <body>
-    <p> ● collect weather information (temp, pressure, wind) from the <br>
+    <p><font size="5"> <span> ● collect weather information (temp, pressure, wind) from the <br>
     METAR service for a variety of airports (python container, you <br>
-    can use the python code from the exercise) </p>
+    can use the python code from the exercise) </span></p>
     
-    <p> ● store this information in a persistent database (database <br>
-    container) </p>
-    <p> ● from a Web frontend, the user can select one of the airports and <br>
-    the stored results will be presented </p>
+    <p> <span> ● store this information in a persistent database (database <br>
+    container) </span></p>
+    <p> <span> ● from a Web frontend, the user can select one of the airports and <br>
+    the stored results will be presented </span> </p>
 
-    <p>● You should use (at least) three containers: the “collector”, the <br>
-        database, the frontend </p>
-    ● frontend TLS secured <br>
+    <p> <span>● You should use (at least) three containers: the “collector”, the <br>
+        database, the frontend </span></p>
+    <span> ● frontend TLS secured <br> </font></span>
     </body>
 </center> 
 {% endblock %}
