@@ -9,41 +9,37 @@
 <head>
     <title> Airport Metar Data Scrapper Project</title>
 </head>
+<!-- <body style="background-color:rgb(47, 92, 218);"></body> -->
+<style>
+h1 {
+  font-weight: bold;
+  color: #fff;
+  font-size: 64px;
+}
+
+h2 {
+  font-weight: bold;
+  color: #fff;
+  font-size: 64px;
+}
+span {
+    background-color: rgb(242, 242, 247);
+  }
+</style>
 
 <link rel="stylesheet" href="{% static 'theme/css/styles.css' %}">
 
-<body style="background-image: url('{% static 'theme/assets/img/chairs.jpg' %}'); background-repeat: no-repeat; background-size: 100%">
+<body style="background-image: url('{% static 'theme/assets/img/uni.jpg' %}'); background-repeat: no-repeat; background-size: 100%">
 
     <center>
-        <h1> Airport Data Website</h1>
-        <h2> Django webapp using PostgreSQL, Docker, and Beautiful Soup</h2>
-        <hr/>
-        <table border="1">
-            <tr>
-                <th>name</th>
-                <th>airport_code</th>
-                <th>temperature</th>
-                <th>dewpoint</th>
-                <th>pressure</th>
-                <th>winds</th>
-                <th>visibility</th>
-                <th>ceiling</th>
-                <th>clouds</th>
-            </tr>
-            {% for results in data%}
-            <tr>
-                <td>{{results.name}}</td>
-                <td>{{results.airport_code}}</td>
-                <td>{{results.temperature}}</td>
-                <td>{{results.dewpoint}}</td>
-                <td>{{results.pressure}}</td>
-                <td>{{results.winds}}</td>
-                <td>{{results.visibility}}</td>
-                <td>{{results.ceiling}}</td>
-                <td>{{results.clouds}}</td>
-            </tr>
-            {% endfor %}
-        </table>
+    <header>
+        <h1></h1>
+        <h1></h1>
+    </header>
+    <header>
+        <h1 style="color: white;"><font size="36"> Airport Data</font></h1>
+        <h2 style="font-family: Arial, Helvetica, sans-serif; color: #000;"> <font size="64"> <span>Welcome to our airport data dollector.</span>  <br> <span>You can Search for most airport weather data </span> <br> <span>using our search button </span> </font></h2> 
+    </header>
     </center>
 </body>
 

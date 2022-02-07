@@ -18,9 +18,30 @@ x-database_admin-variables: &admin-variables
 
 
 services:
-  
+
+  traefik:
+    image: "traefik:v2.2"
+    container_name: "traefik"
+    networks:
+      - traefik-global-proxy
+    ports:
+      - "443:443"
+      - "8081:80"
+    labels:
+      - "traefik.enable=true" # enable the dashboard
+      - "traefik.http.routers.traefik.rule=Host(`monitor.127.0.0.1`)" # domain for dashboard
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.traefik.service=api@internal" # points to dashboard
+      - "traefik.http.routers.traefik.middlewares=auth" # enable password auth
+      - "traefik.http.middlewares.auth.basicauth.users=admin:$$apr1$$Dqo7TC2B$$23bAWltXXzx01XUbq2BU50"
+    volumes:
+      - "./traefik.toml:/etc/traefik/traefik.toml"
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
   website:
-    
+
     image: mywebsite
     container_name: website_project
     command: python manage.py runserver 0.0.0.0:8000
@@ -28,9 +49,11 @@ services:
     environment: *app-variables
     depends_on:
       - db-migrate
+      - traefik
     ports:
       - "8000:8000"
-  
+
+
   db-migrate:
     build:
         context: .
@@ -41,7 +64,9 @@ services:
     environment: *app-variables
     depends_on:
       - collector_app
-  
+
+
+
   postgres:
     image: postgres
     container_name: postgresdb
@@ -51,7 +76,8 @@ services:
       - db-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-  
+
+
   pgadmin:
     container_name: pgadmin4
     image: dpage/pgadmin4
@@ -60,9 +86,9 @@ services:
 
     ports:
       - "5050:80"
-  
+
   collector_app:
-    build: 
+    build:
       context: .
       dockerfile: collector/Dockerfile
     image: collector_image
@@ -76,3 +102,7 @@ services:
 volumes:
   db-data:
 
+# this is the network that every container should connect to, in order to communicate with Traefik. We give it a nice name to type it easier.
+networks:
+  traefik-global-proxy:
+    name: "traefik-global-proxy"
