@@ -46,15 +46,15 @@ while True:
 
     #create a dataframe
     df = pd.DataFrame()
-    df["name"] = pd.Series(airports)
-    df ["airport_code"] = pd.Series(codes)
-    df["temperature"] = pd.Series(var[0])
-    df["dewpoint"] = pd.Series(var[1])
-    df["pressure"] = pd.Series(var[2])
-    df["winds"] = pd.Series(var[3])
-    df["visibility"] = pd.Series(var[4])
-    df["ceiling"] = pd.Series(var[5])
-    df["clouds"] = pd.series(var[6])
+    df["name"] = airports
+    df ["airport_code"] = codes
+    df["temperature"] = var[0]
+    df["dewpoint"] = var[1]
+    df["pressure"] = var[2]
+    df["winds"] = var[3]
+    df["visibility"] = var[4]
+    df["ceiling"] = var[5]
+    df["clouds"] = var[6]
 
     df.to_sql(
         name= 'airports',
